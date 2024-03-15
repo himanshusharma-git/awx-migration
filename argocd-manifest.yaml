@@ -14,11 +14,10 @@ spec:
     - path: awx
       targetRevision: main
       repoURL: https://github.com/himanshusharma-git/awx-migration.git
-    - chart: external-secrets/external-secrets
-      repoURL: https://github.com/external-secrets/external-secrets
-      targetRevision: v0.9.13
+    - path: external-secrets
+      repoURL: https://github.com/himanshusharma-git/awx-migration.git
+      targetRevision: main
       helm:
-        releaseName: external-secrets
         valueFiles:
           - values.yaml
   syncPolicy:

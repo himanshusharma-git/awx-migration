@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::694702677705:role/dev-monitoringsolution-cluster-role
-  name: awx-poc
-  namespace: awx
