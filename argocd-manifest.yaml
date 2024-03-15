@@ -14,12 +14,12 @@ spec:
     - path: awx
       targetRevision: main
       repoURL: https://github.com/himanshusharma-git/awx-migration.git
-    - path: external-secrets
-      repoURL: https://github.com/himanshusharma-git/awx-migration.git
-      targetRevision: main
-      helm:
-        valueFiles:
-          - values.yaml
+    #- path: external-secrets
+    #  repoURL: https://github.com/himanshusharma-git/awx-migration.git
+    #  targetRevision: main
+    #  helm:
+    #    valueFiles:
+    #      - values.yaml
   syncPolicy:
     automated:
       prune: false
