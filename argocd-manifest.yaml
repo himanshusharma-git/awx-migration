@@ -6,20 +6,17 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: awx
-    name: dev-monitoringsolution
-  project: dev-monitoringsolution
+  project: default
   sources:
     - path: ESO
-      targetRevision: CO-1896
-      repoURL: https://github.com/SnapLogic/SnapInfra
+      targetRevision: main
+      repoURL: https://github.com/himanshusharma-git/awx-migration.git
     - path: awx
-      targetRevision: CO-1896
-      repoURL: https://github.com/SnapLogic/SnapInfra
-    - chart: external-secrets
-      repoURL: external-secrets/external-secrets
-      targetRevision: "main"
+      targetRevision: main
+      repoURL: https://github.com/himanshusharma-git/awx-migration.git
+    - chart: external-secrets/external-secrets
+      repoURL: https://github.com/external-secrets/external-secrets
+      targetRevision: v0.9.13
       helm:
         releaseName: external-secrets
         valueFiles:
@@ -31,3 +28,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+  destination:
+    name: in-cluster
+    namespace: awx
