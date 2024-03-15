@@ -1,0 +1,39 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: my-external-secret
+  namespace: awx
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-parameter-store
+    kind: ClusterSecretStore
+  target:
+    name: awx-postgres-configuration
+    creationPolicy: Owner
+    template:
+      data:
+        database: "{{ .database }}"
+        host: "{{ .host }}"
+        username: "{{ .username }}"
+        password: "{{ .password }}"
+        port: "{{ .port }}"
+        sslmode: prefer
+        type: unmanaged
+  data:
+  - secretKey: database
+    remoteRef:
+      key: /admin/awx/sbx/bwahmed/postgres/database
+  - secretKey: host
+    remoteRef:
+      key: /admin/awx/sbx/bwahmed/postgres/host
+  - secretKey: username
+    remoteRef:
+      key: /admin/awx/sbx/bwahmed/postgres/username
+  - secretKey: password
+    remoteRef:
+      key: /admin/awx/sbx/bwahmed/postgres
+  - secretKey: port
+    remoteRef:
+      key: /admin/awx/sbx/bwahmed/postgres/port
+

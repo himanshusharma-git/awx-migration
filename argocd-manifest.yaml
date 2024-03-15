@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: awx-migration
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: awx
+    name: dev-monitoringsolution
+  project: dev-monitoringsolution
+  sources:
+    - path: ESO
+      targetRevision: CO-1896
+      repoURL: https://github.com/SnapLogic/SnapInfra
+    - path: awx
+      targetRevision: CO-1896
+      repoURL: https://github.com/SnapLogic/SnapInfra
+    - chart: external-secrets
+      repoURL: external-secrets/external-secrets
+      targetRevision: "main"
+      helm:
+        releaseName: external-secrets
+        valueFiles:
+          - values.yaml
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
