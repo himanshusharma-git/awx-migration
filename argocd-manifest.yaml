@@ -8,18 +8,18 @@ metadata:
 spec:
   project: default
   sources:
+    - path: external-secrets
+      targetRevision: main 
+      repoURL: https://github.com/himanshusharma-git/awx-migration.git
+      helm:
+        valueFiles:
+          - values.yaml
     - path: ESO
       targetRevision: main
       repoURL: https://github.com/himanshusharma-git/awx-migration.git
     - path: awx
       targetRevision: main
       repoURL: https://github.com/himanshusharma-git/awx-migration.git
-    #- path: external-secrets
-    #  repoURL: https://github.com/himanshusharma-git/awx-migration.git
-    #  targetRevision: main
-    #  helm:
-    #    valueFiles:
-    #      - values.yaml
   syncPolicy:
     automated:
       prune: false

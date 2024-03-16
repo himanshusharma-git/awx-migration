@@ -1,0 +1,185 @@
+replicaCount: 1
+revisionHistoryLimit: 10
+
+image:
+  repository: ghcr.io/external-secrets/external-secrets
+  pullPolicy: IfNotPresent
+  tag: ""
+  flavour: ""
+
+installCRDs: true
+
+crds:
+  createClusterExternalSecret: true
+  createClusterSecretStore: true
+  createPushSecret: true
+  annotations: {}
+  conversion:
+    enabled: true
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "external-secrets"
+clusterName: dev-monitoringsolution
+clusterEndpoint: ${dependency.eks.outputs.cluster_endpoint}
+
+serviceAccount:
+  name: awx-poc
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::694702677705:role/dev-monitoringsolution-cluster-role
+
+commonLabels: {}
+leaderElect: false
+controllerClass: ""
+extendedMetricLabels: false
+scopedNamespace: ""
+scopedRBAC: false
+processClusterExternalSecret: true
+processClusterStore: true
+processPushSecret: true
+createOperator: true
+concurrent: 1
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  extraLabels: {}
+  name: ""
+
+rbac:
+  create: true
+
+servicebindings:
+  create: true
+
+extraEnv: []
+extraArgs: []
+extraVolumes: []
+extraVolumeMounts: []
+extraContainers: []
+
+deploymentAnnotations: {}
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+  seccompProfile:
+    type: RuntimeDefault
+resources: {}
+
+serviceMonitor:
+  enabled: false
+  namespace: ""
+  additionalLabels: {}
+  interval: 30s
+  scrapeTimeout: 25s
+  honorLabels: false
+  metricRelabelings: []
+  relabelings: []
+
+metrics:
+  listen:
+    port: 8080
+  service:
+    enabled: false
+    port: 8080
+    annotations: {}
+
+nodeSelector: {}
+tolerations: []
+topologySpreadConstraints: []
+affinity: {}
+
+priorityClassName: ""
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+
+hostNetwork: false
+
+webhook:
+  create: true
+  certCheckInterval: "5m"
+  lookaheadInterval: ""
+  replicaCount: 1
+  revisionHistoryLimit: 10
+  certDir: /tmp/certs
+  failurePolicy: Fail
+  hostNetwork: false
+  image:
+    repository: ghcr.io/external-secrets/external-secrets
+    pullPolicy: IfNotPresent
+    tag: ""
+    flavour: ""
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+  port: 10250
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+    automount: true
+    annotations: {}
+    extraLabels: {}
+    name: ""
+  nodeSelector: {}
+  certManager:
+    enabled: false
+    addInjectorAnnotations: true
+    cert:
+      create: true
+      issuerRef:
+        group: cert-manager.io
+        kind: "Issuer"
+        name: "my-issuer"
+      duration: "8760h"
+      renewBefore: ""
+      annotations: {}
+
+certController:
+  create: true
+  requeueInterval: "5m"
+  replicaCount: 1
+  revisionHistoryLimit: 10
+  image:
+    repository: ghcr.io/external-secrets/external-secrets
+    pullPolicy: IfNotPresent
+    tag: ""
+    flavour: ""
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+    automount: true
+    annotations: {}
+    extraLabels: {}
+    name: ""
+  nodeSelector: {}
+  hostNetwork: false
+  priorityClassName: ""
+  podDisruptionBudget:
+    enabled: false
+    minAvailable: 1
+  metrics:
+    listen:
+      port: 8080
+    service:
+      enabled: false
+      port: 8080
+      annotations: {}
+
+dnsConfig: {}
+podSpecExtra: {}
+
