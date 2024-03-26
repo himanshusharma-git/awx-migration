@@ -14,7 +14,7 @@ spec:
     environment: sbx
     app: awx
   ingress_type: none
-  postgres_configuration_secret: awx-postgres-configuration
+  postgres_configuration_secret: awx-sbx-postgres-configuration
   garbage_collect_secrets: true
   web_resource_requirements:
     requests:

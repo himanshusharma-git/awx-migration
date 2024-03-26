@@ -1,7 +1,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: my-external-secret
+  name: awx-sbx-postgres-configuration
   namespace: awx
 spec:
   refreshInterval: 1h
@@ -9,7 +9,7 @@ spec:
     name: aws-parameter-store
     kind: ClusterSecretStore
   target:
-    name: awx-postgres-configuration
+    name: awx-sbx-postgres-configuration
     creationPolicy: Owner
     template:
       data:
