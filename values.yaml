@@ -2,6 +2,6 @@ fullnameOverride: "external-secrets"
 clusterName: dev-monitoringsolution
 clusterEndpoint: ${dependency.eks.outputs.cluster_endpoint}
 serviceAccount:
-  name: awx-poc
+  name: awx-migration
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::694702677705:role/dev-monitoringsolution-cluster-role
